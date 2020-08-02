@@ -1,0 +1,167 @@
+swagger: "2.0"
+info:
+  description: This is the swagger file that goes with our server code
+  version: "1.0.0"
+  title: Swagger Rest Article
+consumes:
+  - application/json
+produces:
+  - application/json
+
+basePath: /api
+
+# Paths supported by the server application
+paths:
+  /example_objects:
+    get:
+      operationId: example_objects.read_all
+      tags:
+        - ExampleObjects
+      summary: Read the entire set of example_objects, sorted by field2
+      description: Read the entire set of example_objects, sorted by field2
+      responses:
+        200:
+          description: Successfully read example_objects set operation
+          schema:
+            type: array
+            items:
+              properties:
+                example_object_id:
+                  type: string
+                  description: Id of the example_object
+                field1:
+                  type: string
+                  description: field1 of the example_object
+                field2:
+                  type: string
+                  description: field2 of the example_object
+                timestamp:
+                  type: string
+                  description: Creation/Update timestamp of the example_object
+
+    post:
+      operationId: example_objects.create
+      tags:
+        - ExampleObjects
+      summary: Create an example_object
+      description: Create a new example_object
+      parameters:
+        - name: example_object
+          in: body
+          description: Person to create
+          required: True
+          schema:
+            type: object
+            properties:
+              field1:
+                type: string
+                description: field1 of example_object to create
+              field2:
+                type: string
+                description: field2 of example_object to create
+      responses:
+        201:
+          description: Successfully created example_object
+          schema:
+            properties:
+              example_object_id:
+                type: string
+                description: Id of the example_object
+              field1:
+                type: string
+                description: field1 of the example_object
+              field2:
+                type: string
+                description: field2 of the example_object
+              timestamp:
+                type: string
+                description: Creation/Update timestamp of the example_object record
+
+  /example_objects/{example_object_id}:
+    get:
+      operationId: example_objects.read_one
+      tags:
+        - ExampleObjects
+      summary: Read one example_object
+      description: Read one example_object
+      parameters:
+        - name: example_object_id
+          in: path
+          description: Id of the example_object to get
+          type: integer
+          required: True
+      responses:
+        200:
+          description: Successfully read example_object from example_objects data operation
+          schema:
+            type: object
+            properties:
+              example_object_id:
+                type: string
+                description: Id of the example_object
+              field1:
+                type: string
+                description: field1 of the example_object
+              field2:
+                type: string
+                description: field2 of the example_object
+              timestamp:
+                type: string
+                description: Creation/Update timestamp of the example_object record
+
+    put:
+      operationId: example_objects.update
+      tags:
+        - ExampleObjects
+      summary: Update an example_object
+      description: Update an example_object
+      parameters:
+        - name: example_object_id
+          in: path
+          description: Id the example_object to update
+          type: integer
+          required: True
+        - name: example_object
+          in: body
+          schema:
+            type: object
+            properties:
+              field1:
+                type: string
+                description: field1 of the example_object
+              field2:
+                type: string
+                description: field2 of the example_object
+      responses:
+        200:
+          description: Successfully updated example_object
+          schema:
+            properties:
+              example_object_id:
+                type: string
+                description: Id of the example_object in the database
+              field1:
+                type: string
+                description: field1 of the example_object
+              field2:
+                type: string
+                description: field2 of the example_object
+              timestamp:
+                type: string
+                description: Creation/Update timestamp of the example_object record
+
+    delete:
+      operationId: example_objects.delete
+      tags:
+        - ExampleObjects
+      summary: Delete an example_object from the example_objects list
+      description: Delete an example_object
+      parameters:
+        - name: example_object_id
+          in: path
+          type: integer
+          description: Id of the example_object to delete
+          required: true
+      responses:
+        200:
+          description: Successfully deleted an example_object
