@@ -10,7 +10,7 @@ docker run -d -p 5000:5000 --name example-rest example-rest:v1.0
 host:5000/api/ui/
 
 
-To run without docker, install requirements into virtual inveronment and run server.py
+To run without docker, install requirements into virtual environment and run build_database.py, then server.py
 
 If postgres is needed as a database, follow this steps:
 - Add psycopg2-binary to requirements.txt and install it
